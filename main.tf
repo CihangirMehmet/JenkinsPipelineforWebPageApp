@@ -23,7 +23,7 @@ variable "tags" {
 
 
 variable "user" {
-  default = "tyler"
+  default = "clarusway"
   
 }
 
@@ -33,7 +33,7 @@ resource "aws_instance" "managed_nodes" {
   instance_type = "t2.micro"
   key_name = "linux-calismalar"
   vpc_security_group_ids = [aws_security_group.tf-sec-gr.id]
-  iam_instance_profile = "petclinic-jenkins-server-role"
+  iam_instance_profile = "jenkins-project-profile-${var.user}"
   tags = {
     Name = "ansible_${element(var.tags, count.index )}"
     stack = "ansible_project-1"
